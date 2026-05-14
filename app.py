@@ -22,8 +22,9 @@ app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), na
 @app.post("/api/analyze")
 async def analyze_corpus(file: UploadFile = File(...), keywords: str = Form(...)):
     try:
-        # Save uploaded file temporarily
-        file_location = f"temp_{file.filename}"
+        import tempfile
+        # Save uploaded file temporarily to the system's temp directory (Vercel uses /tmp)
+        file_location = os.path.join(tempfile.gettempdir(), f"temp_{file.filename}")
         with open(file_location, "wb+") as file_object:
             file_object.write(await file.read())
 
