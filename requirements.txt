@@ -1,0 +1,6 @@
+openai
+pinecone
+python-dotenv
+spacy
+pandas
+gradio
