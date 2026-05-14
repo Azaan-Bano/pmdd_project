@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMDD - Pragmatic Meaning Drift Detector</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <!-- Floating Particles Layer -->
+    <div id="particles-js" class="particles-container"></div>
+    
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 class="gradient-text">PMDD Core</h1>
+            <p>Agentic AI Semantic Analysis Engine</p>
+        </header>
+
+        <main>
+            <!-- Upload Panel -->
+            <section class="glass-panel main-panel" id="upload-panel">
+                <div class="panel-header">
+                    <h2>Initialize Pipeline</h2>
+                    <div class="status-dot standby"></div>
+                </div>
+                <form id="analysis-form">
+                    <div class="form-group">
+                        <label for="corpus-file">Corpus Data (.txt)</label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="corpus-file" name="file" accept=".txt" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="keywords">Target Parameters (Keywords)</label>
+                        <input type="text" id="keywords" name="keywords" value="community, power, change" required>
+                    </div>
+                    <button type="submit" class="glow-btn cinematic-btn">Initiate Neural Analysis</button>
+                </form>
+            </section>
+
+            <!-- Agent Grid Panel -->
+            <section class="hidden" id="progress-panel">
+                <h2 class="section-title">Agent Orchestration Protocol</h2>
+                <div class="agent-grid">
+                    
+                    <!-- Agent 1 -->
+                    <div class="agent-card" id="agent-1">
+                        <div class="card-glow"></div>
+                        <div class="agent-header">
+                            <div class="agent-title">
+                                <span class="agent-icon">⚡</span>
+                                <h3>Agent 1: Preprocessor</h3>
+                            </div>
+                            <span class="badge waiting">Standby</span>
+                        </div>
+                        <div class="agent-console">
+                            <div class="console-text" id="console-1">Awaiting deployment...</div>
+                        </div>
+                    </div>
+
+                    <!-- Agent 2 -->
+                    <div class="agent-card" id="agent-2">
+                        <div class="card-glow"></div>
+                        <div class="agent-header">
+                            <div class="agent-title">
+                                <span class="agent-icon">🧠</span>
+                                <h3>Agent 2: Pragmatics</h3>
+                            </div>
+                            <span class="badge waiting">Standby</span>
+                        </div>
+                        <div class="agent-console">
+                            <div class="console-text" id="console-2">Awaiting deployment...</div>
+                        </div>
+                    </div>
+
+                    <!-- Agent 3 -->
+                    <div class="agent-card" id="agent-3">
+                        <div class="card-glow"></div>
+                        <div class="agent-header">
+                            <div class="agent-title">
+                                <span class="agent-icon">🕸️</span>
+                                <h3>Agent 3: Semantics</h3>
+                            </div>
+                            <span class="badge waiting">Standby</span>
+                        </div>
+                        <div class="agent-console">
+                            <div class="console-text" id="console-3">Awaiting deployment...</div>
+                        </div>
+                    </div>
+
+                    <!-- Agent 4 -->
+                    <div class="agent-card" id="agent-4">
+                        <div class="card-glow"></div>
+                        <div class="agent-header">
+                            <div class="agent-title">
+                                <span class="agent-icon">📊</span>
+                                <h3>Agent 4: Statistician</h3>
+                            </div>
+                            <span class="badge waiting">Standby</span>
+                        </div>
+                        <div class="agent-console">
+                            <div class="console-text" id="console-4">Awaiting deployment...</div>
+                        </div>
+                    </div>
+
+                    <!-- Agent 5 -->
+                    <div class="agent-card" id="agent-5">
+                        <div class="card-glow"></div>
+                        <div class="agent-header">
+                            <div class="agent-title">
+                                <span class="agent-icon">👁️</span>
+                                <h3>Agent 5: Orchestrator</h3>
+                            </div>
+                            <span class="badge waiting">Standby</span>
+                        </div>
+                        <div class="agent-console">
+                            <div class="console-text" id="console-5">Awaiting deployment...</div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Results Dashboard -->
+            <section class="dashboard hidden" id="results-panel">
+                <div class="glass-panel graph-panel cinematic-reveal">
+                    <h2>Drift Visualization Matrix</h2>
+                    <canvas id="driftChart"></canvas>
+                </div>
+                
+                <div class="glass-panel report-panel cinematic-reveal delay-1">
+                    <div class="panel-header" style="margin-bottom: 1rem;">
+                        <h2>Final Synthesized Report</h2>
+                        <button id="download-json" class="glow-btn" style="width: auto; padding: 0.6rem 1.2rem; font-size: 1rem;">⬇ Download Raw JSON</button>
+                    </div>
+                    <div id="markdown-content" class="markdown-body"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
