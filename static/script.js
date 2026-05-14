@@ -33,16 +33,33 @@ document.getElementById('analysis-form').addEventListener('submit', async (e) =>
     let apiCompleted = false;
     let apiError = null;
 
-    // Start API Call in parallel
+    // Start API Call in parallel with safe response handling
     fetch('/api/analyze', { method: 'POST', body: formData })
-        .then(res => res.json())
+        .then(async res => {
+            const text = await res.text();
+            try {
+                const data = JSON.parse(text);
+                if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+                return data;
+            } catch (err) {
+                if (text.includes("504") || text.includes("TIMEOUT")) {
+                    throw new Error("Server Timeout (504): The AI analysis took too long. Try uploading a smaller text file.");
+                }
+                // If the error isn't from our throw above, it means JSON.parse failed
+                if (err.name === "SyntaxError") {
+                    console.error("Raw server response:", text);
+                    throw new Error("Invalid server response. Please try again.");
+                }
+                throw err;
+            }
+        })
         .then(data => {
             if(data.error) throw new Error(data.error);
             apiResponseData = data;
             apiCompleted = true;
         })
         .catch(err => {
-            console.error(err);
+            console.error("API Error:", err);
             apiError = err;
             apiCompleted = true;
         });
